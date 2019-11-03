@@ -40,7 +40,7 @@ export default class Reader extends Component {
 
     return (
       <div className={style.reader}>
-        <Controls onBack={this.handleBack} onNext={this.handleNext} />
+        <Controls onBack={this.handleBack} onNext={this.handleNext} stepMin={value} stepMax={publications.length-1}/>
         <Counter step={value} maxCounter={publications.length} />
         <Publication article={publications[value]} />
       </div>
