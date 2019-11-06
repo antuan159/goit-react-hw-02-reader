@@ -2,15 +2,15 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import style from './Counter.module.css';
 
-const Counter = ({ step, maxCounter }) => (
+const Counter = ({ index, maxLength }) => (
   <p className={style.counter}>
-    {step + 1}/{maxCounter}
+    {index + 1}/{maxLength}
   </p>
 );
 
 Counter.propTypes = {
-  step: PropTypes.number.isRequired,
-  maxCounter: PropTypes.number.isRequired,
+  index: PropTypes.number.isRequired,
+  maxLength: PropTypes.number.isRequired,
 };
 
 export default Counter;

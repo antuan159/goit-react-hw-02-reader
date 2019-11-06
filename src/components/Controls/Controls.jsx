@@ -2,21 +2,21 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import style from './Controls.module.css';
 
-const Controls = ({ onBack, onNext, stepMin, stepMax }) => (
+const Controls = ({ onChangePage, indexStart, indexEnd }) => (
   <section className={style.controls}>
     <button
       className={style.button}
       type="button"
-      onClick={onBack}
-      disabled={stepMin === 0 ? 'disabled' : false}
+      onClick={onChangePage}
+      disabled={indexStart === 0}
     >
       Назад
     </button>
     <button
       className={style.button}
       type="button"
-      onClick={onNext}
-      disabled={stepMin === stepMax ? 'disabled' : false}
+      onClick={() => onChangePage('next')}
+      disabled={indexStart === indexEnd}
     >
       Вперед
     </button>
@@ -24,10 +24,9 @@ const Controls = ({ onBack, onNext, stepMin, stepMax }) => (
 );
 
 Controls.propTypes = {
-  stepMax: PropTypes.number.isRequired,
-  stepMin: PropTypes.number.isRequired,
-  onBack: PropTypes.func.isRequired,
-  onNext: PropTypes.func.isRequired,
+  indexStart: PropTypes.number.isRequired,
+  indexEnd: PropTypes.number.isRequired,
+  onChangePage: PropTypes.func.isRequired,
 };
 
 export default Controls;

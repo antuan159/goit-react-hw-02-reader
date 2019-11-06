@@ -7,42 +7,32 @@ import Publication from '../Publication';
 
 export default class Reader extends Component {
   static propTypes = {
-    index: PropTypes.number,
     publications: PropTypes.arrayOf(PropTypes.object).isRequired,
   };
 
-  static defaultProps = {
+  state = {
     index: 0,
   };
 
-  state = {
-    value: this.props.index,
-  };
-
-  handleBack = () => {
+  handleChangePage = obj => {
     this.setState(prevState => ({
-      value: prevState.value === 0 ? prevState.value : prevState.value - 1,
-    }));
-  };
-
-  handleNext = () => {
-    this.setState(prevState => ({
-      value:
-        prevState.value === this.props.publications.length - 1
-          ? prevState.value
-          : prevState.value + 1,
+      index: obj === 'next' ? prevState.index + 1 : prevState.index - 1,
     }));
   };
 
   render() {
-    const { value } = this.state;
+    const { index } = this.state;
     const { publications } = this.props;
 
     return (
       <div className={style.reader}>
-        <Controls onBack={this.handleBack} onNext={this.handleNext} stepMin={value} stepMax={publications.length-1}/>
-        <Counter step={value} maxCounter={publications.length} />
-        <Publication article={publications[value]} />
+        <Controls
+          onChangePage={this.handleChangePage}
+          indexStart={index}
+          indexEnd={publications.length - 1}
+        />
+        <Counter index={index} maxLength={publications.length} />
+        <Publication article={publications[index]} />
       </div>
     );
   }
