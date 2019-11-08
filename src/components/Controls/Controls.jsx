@@ -7,7 +7,7 @@ const Controls = ({ onChangePage, indexStart, indexEnd }) => (
     <button
       className={style.button}
       type="button"
-      onClick={() => onChangePage('prev')}
+      onClick={() => onChangePage(-1)}
       disabled={indexStart === 0}
     >
       Назад
