@@ -16,7 +16,7 @@ export default class Reader extends Component {
 
   handleChangePage = obj => {
     this.setState(prevState => ({
-      index: obj === 'next' ? prevState.index + 1 : prevState.index - 1,
+      index: obj === 'prev' ? prevState.index - 1 : prevState.index + 1,
     }));
   };
 
